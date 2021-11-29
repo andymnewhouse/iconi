@@ -1,0 +1,254 @@
+title: Common
+fields:
+  -
+    handle: text_color
+    field:
+      options:
+        text-teal-600: Teal
+        text-chestnut-500: Chestnut
+        text-gray-50: 'Light Gray'
+        text-gray-300: Gray
+        text-gray-900: 'Dark Gray'
+      multiple: false
+      max_items: 1
+      clearable: false
+      searchable: true
+      taggable: true
+      push_tags: false
+      cast_booleans: false
+      display: 'Text Color'
+      type: select
+      icon: select
+      listable: hidden
+      instructions_position: above
+  -
+    handle: bg_color
+    field:
+      options:
+        bg-blue-600: Teal
+        bg-red-500: Chestnut
+        bg-gray-50: 'Gray 50 (Lightest)'
+        bg-gray-100: 'Gray 100'
+        bg-gray-200: 'Gray 200'
+        bg-gray-500: 'Gray 500 (Middle)'
+        bg-gray-600: 'Gray 600'
+        bg-gray-700: 'Gray 700'
+        bg-gray-800: 'Gray 800'
+        bg-gray-900: 'Gray 900 (Darkest)'
+      multiple: false
+      max_items: 1
+      clearable: false
+      searchable: true
+      taggable: true
+      push_tags: false
+      cast_booleans: false
+      display: 'Background Color'
+      type: select
+      icon: select
+      listable: hidden
+      instructions_position: above
+  -
+    handle: image
+    field:
+      mode: list
+      container: assets
+      restrict: false
+      allow_uploads: true
+      max_files: 1
+      type: assets
+      localizable: true
+      listable: hidden
+      display: Image
+      instructions: '__Don''t Be Lazy!__ Filename should be descriptive of what the image is i.e. `harry-potter-headshot.jpg`. Minify before uploading.'
+      instructions_position: above
+      show_filename: true
+  -
+    handle: images
+    field:
+      mode: grid
+      container: assets
+      restrict: false
+      allow_uploads: true
+      max_files: 0
+      type: assets
+      localizable: true
+      listable: hidden
+      display: Images
+      instructions: '__Don''t Be Lazy!__ Filename should be descriptive of what the image is i.e. `harry-potter-headshot.jpg`. Minify before uploading.'
+      instructions_position: above
+      show_filename: true
+  -
+    handle: rich_text
+    field:
+      always_show_set_button: false
+      sets:
+        asset_row:
+          display: Asset
+          fields:
+            -
+              handle: asset_type
+              field:
+                options:
+                  image: Image
+                  video: Video
+                inline: true
+                cast_booleans: false
+                display: 'Asset Type'
+                type: radio
+                icon: radio
+                listable: hidden
+                instructions_position: above
+                width: 50
+            -
+              handle: image
+              field:
+                mode: list
+                container: assets
+                restrict: false
+                allow_uploads: false
+                show_filename: true
+                max_files: 1
+                display: Image
+                type: assets
+                icon: assets
+                listable: hidden
+                instructions_position: above
+                if:
+                  asset_type: 'equals image'
+            -
+              handle: frame
+              field:
+                default: true
+                display: Frame
+                type: toggle
+                icon: toggle
+                instructions: 'Adds rounded corners and a shadow.'
+                width: 33
+                listable: hidden
+                instructions_position: above
+                if:
+                  asset_type: 'equals image'
+            -
+              handle: image_url
+              field:
+                input_type: url
+                antlers: false
+                display: 'Image Url'
+                type: text
+                icon: text
+                listable: hidden
+                instructions_position: above
+                if:
+                  asset_type: 'equals image'
+                width: 66
+            -
+              handle: caption
+              field:
+                antlers: false
+                display: Caption
+                type: textarea
+                icon: textarea
+                listable: hidden
+                instructions_position: above
+                if:
+                  asset_type: 'equals image'
+            -
+              handle: video
+              field:
+                display: Video
+                type: video
+                icon: video
+                listable: hidden
+                instructions_position: above
+                if:
+                  asset_type: 'equals video'
+        buttons:
+          display: Buttons
+          fields:
+            -
+              handle: justification
+              field:
+                options:
+                  left: null
+                  right: null
+                  center: null
+                multiple: false
+                clearable: false
+                searchable: true
+                taggable: false
+                push_tags: false
+                cast_booleans: false
+                display: Justification
+                type: select
+                icon: select
+                listable: hidden
+                instructions_position: above
+                default: left
+            -
+              handle: buttons
+              field:
+                collapse: false
+                sets:
+                  button:
+                    display: Button
+                    fields:
+                      -
+                        import: button
+                display: Buttons
+                type: replicator
+                icon: replicator
+                listable: hidden
+                instructions_position: above
+      buttons:
+        - h2
+        - h3
+        - bold
+        - italic
+        - underline
+        - strikethrough
+        - unorderedlist
+        - orderedlist
+        - removeformat
+        - quote
+        - anchor
+        - image
+        - table
+        - code
+        - codeblock
+        - horizontalrule
+      save_html: false
+      toolbar_mode: fixed
+      link_noopener: false
+      link_noreferrer: false
+      target_blank: false
+      reading_time: false
+      fullscreen: true
+      allow_source: true
+      enable_input_rules: true
+      enable_paste_rules: true
+      display: 'Rich Text'
+      type: bard
+      icon: bard
+      listable: hidden
+      instructions_position: above
+  -
+    handle: prose_size
+    field:
+      options:
+        prose-sm: null
+        prose-base: null
+        prose-lg: null
+        prose-xl: null
+        prose-2xl: null
+      multiple: false
+      clearable: false
+      searchable: true
+      taggable: false
+      push_tags: false
+      cast_booleans: false
+      default: prose-base
+      display: 'Prose Size'
+      type: select
+      icon: select
+      listable: hidden
+      instructions_position: above

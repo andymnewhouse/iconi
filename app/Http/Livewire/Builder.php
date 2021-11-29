@@ -120,14 +120,7 @@ class Builder extends Component
         }
 
         if($configChanged) {
-            $filedata = Browsershot::url(route('preview', $this->keyImage))
-                ->windowSize(288, 288)
-                ->base64Screenshot();
-
-            $file = $this->keyImage
-                ->addMediaFromBase64($filedata)
-                ->usingFileName($this->keyImage->filename . '.png')
-                ->toMediaCollection('key-image');
+            $file = $this->keyImage->generate();
         } else {
             $file = $this->keyImage->getMedia('key-image');
         }
@@ -137,9 +130,22 @@ class Builder extends Component
 
     public function save()
     {
-        $this->keyImage->user_id = auth()->id();
+        $this->validate();
 
-        $this->keyImage->save();
+        if(!$this->keyImage) {
+            $this->keyImage = KeyImage::create([
+                'user_id' => auth()->check() ? auth()->id() : null,
+                'filename' => $this->filename,
+                'config' => $this->form,
+            ]);
+        } else {
+            $this->keyImage->config = $this->form;
+            $this->keyImage->filename = $this->filename;
+            $this->keyImage->user_id = auth()->id();
+            $this->keyImage->save();
+        }
+
+        return redirect()->route('dashboard');
     }
 
 }

@@ -1,0 +1,73 @@
+title: Button
+fields:
+    -
+      handle: link
+      field:
+        collections:
+          - pages
+        display: Link
+        type: link
+        icon: link
+        listable: hidden
+        instructions_position: above
+    -
+      handle: title
+      field:
+        input_type: text
+        antlers: false
+        display: Title
+        type: text
+        icon: text
+        width: 75
+        listable: hidden
+        instructions_position: above
+    -
+      handle: target_blank
+      field:
+        default: false
+        display: 'New Tab'
+        type: toggle
+        icon: toggle
+        width: 25
+        listable: hidden
+        instructions_position: above
+    -
+      handle: color
+      field:
+        options:
+          btn-cyan: Cyan
+          btn-gray: Gray
+        multiple: false
+        clearable: false
+        searchable: true
+        taggable: false
+        push_tags: false
+        cast_booleans: false
+        display: Color
+        type: select
+        icon: select
+        width: 33
+        listable: hidden
+        instructions_position: above
+        default: btn-gray
+    -
+      handle: size
+      field:
+        options:
+          btn-sm: Small
+          btn-base: Base
+          btn-lg: Large
+          btn-xl: 'Extra Large'
+        multiple: false
+        clearable: false
+        searchable: true
+        taggable: false
+        push_tags: false
+        cast_booleans: false
+        display: Size
+        type: select
+        icon: select
+        listable: hidden
+        instructions_position: above
+        width: 33
+        default: btn-base

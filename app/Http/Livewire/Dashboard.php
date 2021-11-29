@@ -24,7 +24,17 @@ class Dashboard extends Component
     {
         $keyImage = $this->keyImages->find($id);
 
-        return $keyImage->getMedia('key-image');
+        if($image = $keyImage->getMedia('key-image')) {
+           return $image;
+        } else {
+            return $keyImage->generate();
+        }
+    }
+
+    public function duplicate($id)
+    {
+        $keyImage = $this->keyImages->find($id);
+        $keyImage->duplicate();
     }
 
     public function edit($id)
@@ -32,5 +42,14 @@ class Dashboard extends Component
         $keyImage = $this->keyImages->find($id);
 
         return redirect()->route('builder', $keyImage);
+    }
+
+    public function generate($id)
+    {
+        $keyImage = $this->keyImages->find($id);
+
+        $file = $keyImage->generate();
+
+        return $file;
     }
 }

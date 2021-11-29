@@ -1,0 +1,47 @@
+title: Pages
+sections:
+  main:
+    display: Main
+    fields:
+      -
+        handle: title
+        field:
+          type: text
+          required: true
+          validate:
+            - required
+      -
+        handle: page_builder
+        field:
+          collapse: false
+          sets:
+            hero_section:
+              display: 'Hero Section'
+              fields:
+                -
+                  import: pb_hero
+          display: 'Page Builder'
+          type: replicator
+          icon: replicator
+          listable: hidden
+          instructions_position: above
+  sidebar:
+    display: Sidebar
+    fields:
+      -
+        handle: slug
+        field:
+          type: slug
+          required: true
+          localizable: true
+          validate:
+            - required
+      -
+        handle: parent
+        field:
+          type: entries
+          collections:
+            - pages
+          max_items: 1
+          listable: false
+          localizable: true

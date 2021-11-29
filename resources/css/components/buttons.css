@@ -1,0 +1,36 @@
+.btn {
+    @apply inline-flex items-center font-medium border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500;
+}
+.btn-block {
+    @apply justify-center w-full text-center;
+}
+
+.btn-xs {
+    @apply px-2.5 py-1.5 text-xs rounded;
+}
+.btn-sm {
+    @apply px-3 py-2 text-sm leading-4 rounded-md;
+}
+.btn-base {
+    @apply px-4 py-2 text-base rounded-md;
+}
+.btn-lg {
+    @apply px-4 py-2 text-lg font-semibold rounded-md;
+}
+.btn-xl {
+    @apply px-6 py-3 text-lg font-semibold rounded-md;
+}
+
+.btn-cyan {
+    @apply text-white shadow-sm bg-cyan-600 hover:bg-cyan-700;
+}
+.btn-gray {
+    @apply text-gray-900 bg-gray-300 shadow-sm hover:bg-gray-400;
+}
+.btn-link {
+    @apply bg-transparent text-cyan-900 hover:bg-cyan-100 hover:shadow-sm;
+}
+
+.prose .btn {
+    @apply no-underline;
+}

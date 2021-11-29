@@ -14,7 +14,7 @@
     }
 @endphp
 
-<div class="w-full h-full flex p-8 items-center justify-center" style="background: {{ $form['background']['color'] }}">
+<div class="flex items-center justify-center w-full h-full p-12" style="background: {{ $form['background']['color'] }}">
     @if($form['icon'])
     <x-dynamic-component :component="$form['icon']" :style="$iconStyles" />
     @endif
