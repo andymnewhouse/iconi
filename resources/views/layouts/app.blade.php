@@ -22,7 +22,7 @@
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @if(isset($hideNav) && $hideNav !== true)
+            @if(!isset($hideNav) || $hideNav !== true)
             @livewire('navigation-menu')
             @endif
 

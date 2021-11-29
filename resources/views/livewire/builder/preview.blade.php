@@ -4,7 +4,7 @@
         $dropStyles = '';
 
         foreach($form['styling']['builder'] as $row) {
-            if(isset($row['offsetX'])) {
+            if(isset($row['offsetX']) && isset($row['offsetY']) && isset($row['blur']) && isset($row['color'])) {
                 $dropStyles .= " drop-shadow({$row['offsetX']} {$row['offsetY']} {$row['blur']} {$row['color']})";
             }
         }

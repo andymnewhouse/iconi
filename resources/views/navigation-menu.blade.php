@@ -12,6 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @auth
+                    <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                    @endauth
                     <x-jet-nav-link href="{{ route('builder') }}" :active="request()->routeIs('builder')">
                         {{ __('Builder') }}
                     </x-jet-nav-link>

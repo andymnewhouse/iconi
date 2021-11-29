@@ -16,7 +16,8 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
         "spatie/browsershot": "^3.52",
-        "spatie/laravel-medialibrary": "^9.9"
+        "spatie/laravel-medialibrary": "^9.9",
+        "statamic/cms": "^3.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -39,9 +40,15 @@
         }
     },
     "scripts": {
+        "pre-update-cmd": [
+            "Statamic\\Console\\Composer\\Scripts::preUpdateCmd"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan statamic:install --ansi",
+            "@php artisan statamic:search:update --all --ansi",
+            "@php artisan statamic:static:clear --ansi"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi"

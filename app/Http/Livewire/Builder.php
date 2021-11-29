@@ -43,7 +43,9 @@ class Builder extends Component
 
     public function mount($keyImage = null)
     {
-        if($keyImage !== null) {
+        if($keyImage) {
+            $keyImage = KeyImage::find($keyImage);
+
             $this->keyImage = $keyImage;
             $this->form = $keyImage->config;
             $this->filename = $keyImage->filename;
@@ -89,8 +91,8 @@ class Builder extends Component
         return [
             ['link' => '#background', 'title' => 'Background', 'subtitle' => 'Choose a color, or image to be the icon background', 'complete' => $this->form['background']['color'] !== '', 'active' => false],
             ['link' => '#icon', 'title' => 'Icon', 'subtitle' => 'Choose an icon, or upload one', 'complete' => $this->form['icon'], 'active' => false],
-            ['link' => '#styling', 'title' => 'Styling', 'subtitle' => 'Add shadows, or other affects to the icon', 'complete' => false, 'active' => false],
-            ['link' => '#download', 'title' => 'Download', 'subtitle' => 'Get your creation to use in stream deck', 'complete' => false, 'active' => false],
+            ['link' => '#styling', 'title' => 'Styling', 'subtitle' => 'Add shadows, or other affects to the icon', 'complete' => $this->form['styling']['color'], 'active' => false],
+            ['link' => '#download', 'title' => 'Download', 'subtitle' => 'Get your creation to use in stream deck', 'complete' => optional($this->keyImage)->getMedia('key-image'), 'active' => false],
         ];
     }
 
@@ -109,11 +111,35 @@ class Builder extends Component
                 'filename' => $this->filename,
                 'config' => $this->form,
             ]);
+            $configChanged = true;
         } else {
+            $configChanged = $this->keyImage->config === $this->form;
             $this->keyImage->config = $this->form;
             $this->keyImage->filename = $this->filename;
             $this->keyImage->save();
         }
+
+        if($configChanged) {
+            $filedata = Browsershot::url(route('preview', $this->keyImage))
+                ->windowSize(288, 288)
+                ->base64Screenshot();
+
+            $file = $this->keyImage
+                ->addMediaFromBase64($filedata)
+                ->usingFileName($this->keyImage->filename . '.png')
+                ->toMediaCollection('key-image');
+        } else {
+            $file = $this->keyImage->getMedia('key-image');
+        }
+
+        return $file;
+    }
+
+    public function save()
+    {
+        $this->keyImage->user_id = auth()->id();
+
+        $this->keyImage->save();
     }
 
 }
