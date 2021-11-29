@@ -113,7 +113,7 @@ class Builder extends Component
             ]);
             $configChanged = true;
         } else {
-            $configChanged = $this->keyImage->config === $this->form;
+            $configChanged = $this->keyImage->config !== $this->form;
             $this->keyImage->config = $this->form;
             $this->keyImage->filename = $this->filename;
             $this->keyImage->save();
