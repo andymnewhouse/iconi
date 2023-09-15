@@ -22,7 +22,8 @@
         "livewire/livewire": "^2.5",
         "spatie/browsershot": "^3.52",
         "spatie/laravel-medialibrary": "^9.9",
-        "statamic/cms": "^3.2"
+        "statamic/cms": "^3.2",
+        "league/flysystem-aws-s3-v3": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
