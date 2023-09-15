@@ -7,10 +7,6 @@ use Illuminate\Support\Facades\Storage;
 
 class GenerateIconList extends Command
 {
-    protected $signature = 'generate:icons';
-
-    protected $description = 'Command description';
-
     public $libraries = [
         // A
         // 'codeat3/blade-academicons' => ['component' => 'academicon', 'title' => 'Academicons', 'url' => 'http://jpswalsh.github.io/academicons/'],
@@ -99,6 +95,10 @@ class GenerateIconList extends Command
         'blade-ui-kit/blade-zondicons' => ['component' => 'zondicon', 'title' => 'Zondicons', 'url' => 'http://www.zondicons.com/'],
     ];
 
+    protected $signature = 'generate:icons';
+
+    protected $description = 'Command description';
+
     public function __construct()
     {
         parent::__construct();
@@ -107,19 +107,17 @@ class GenerateIconList extends Command
     public function handle(): void
     {
         $data = collect($this->libraries)->mapWithKeys(function ($lib, $key) {
-            $files = app('files')->files(base_path("vendor/$key/resources/svg"));
+            $files = app('files')->files(base_path("vendor/{$key}/resources/svg"));
 
             if (! empty($files)) {
-                $icons = array_map(fn ($icon) => $lib['component'].'-'.$icon->getBasename('.svg'), $files);
+                $icons = array_map(fn ($icon) => $lib['component'] . '-' . $icon->getBasename('.svg'), $files);
             } else {
-                $folders = app('files')->directories(base_path("vendor/$key/resources/svg"));
+                $folders = app('files')->directories(base_path("vendor/{$key}/resources/svg"));
                 $icons = [];
                 foreach ($folders as $folder) {
                     $files = app('files')->files($folder);
                     if (isset($lib['types'])) {
-                        $i = array_map(fn ($icon) => $lib['component'].$lib['types'][basename($folder)].'-'.$icon->getBasename('.svg'), $files);
-                    } else {
-                        dd($folder);
+                        $i = array_map(fn ($icon) => $lib['component'] . $lib['types'][basename($folder)] . '-' . $icon->getBasename('.svg'), $files);
                     }
 
                     $icons = array_merge($icons, $i);

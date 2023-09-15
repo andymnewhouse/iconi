@@ -14,11 +14,11 @@
             </div>
         </div>
         <div class="space-y-4 overflow-scroll max-h-96">
-            @foreach($icons as $lib => $libIcons)
+            @foreach ($icons as $lib => $libIcons)
             <div>
                 <span class="text-lg text-gray-900 dark:text-gray-200">{{ $lib }}</span>
                 <div class="flex flex-wrap">
-                    @forelse($libIcons as $i)
+                    @forelse ($libIcons as $i)
                     <label for="icon-{{ $i['name'] }}" class="p-2 flex items-center justify-center w-12 h-12 rounded-md border border-gray-200 dark:border-gray-800 m-1 {{ $form['icon'] === $i['component'] ? 'bg-cyan-600 dark:bg-cyan-400' : '' }}">
                         <input id="icon-{{ $i['name'] }}" type="radio" wire:model="form.icon" value="{{ $i['component'] }}" class="hidden">
                         <x-dynamic-component :component="$i['component']" :class="$form['icon'] === $i['component'] ? 'text-white' : 'text-gray-700 dark:text-gray-400'" />

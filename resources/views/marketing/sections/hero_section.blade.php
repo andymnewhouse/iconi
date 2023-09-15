@@ -4,7 +4,7 @@
       <div>
         <x-jet-application-mark class="block w-auto h-11" />
         <div class="mt-10 space-y-4">
-            @foreach($rich_text as $item)
+            @foreach ($rich_text as $item)
                 @include('marketing.sets.'.$item['type'], $item)
             @endforeach
         </div>

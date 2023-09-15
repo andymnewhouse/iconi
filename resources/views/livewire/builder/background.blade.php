@@ -26,7 +26,7 @@
             </fieldset>
         </div>
 
-        @if($form['background']['style'] === 'solid')
+        @if ($form['background']['style'] === 'solid')
             @include('livewire.builder.background-solid')
         @else
             <span class="text-lg text-gray-700 dark:text-gray-400">TBD</span>

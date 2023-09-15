@@ -25,7 +25,7 @@ class KeyImage extends Model implements HasMedia
     public function duplicate()
     {
         $newImage = $this->replicate();
-        $newImage->filename = $newImage->filename.'-copy';
+        $newImage->filename = $newImage->filename . '-copy';
 
         $newImage->push();
 
@@ -40,7 +40,7 @@ class KeyImage extends Model implements HasMedia
 
         return $this
             ->addMediaFromBase64($filedata)
-            ->usingFileName($this->filename.'.png')
+            ->usingFileName($this->filename . '.png')
             ->toMediaCollection('key-image');
     }
 }
