@@ -8,7 +8,7 @@
             <label for="icon-search" class="sr-only">Icon Search</label>
             <div class="relative mt-1 rounded-md shadow-sm">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <x-heroicon-s-search class="w-5 h-5 text-gray-400"/>
+                    <x-heroicon-s-magnifying-glass class="w-5 h-5 text-gray-400" />
                 </div>
                 <input type="text" wire:model="iconSearch" name="icon-search" id="icon-search" placeholder="Search Icons" class="block w-full pl-10 border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm dark:bg-gray-900 dark:text-gray-200 dark:focus:bg-gray-800 dark:border-gray-700">
             </div>
