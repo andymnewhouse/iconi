@@ -104,7 +104,7 @@ class GenerateIconList extends Command
         parent::__construct();
     }
 
-    public function handle()
+    public function handle(): void
     {
         $data = collect($this->libraries)->mapWithKeys(function ($lib, $key) {
             $files = app('files')->files(base_path("vendor/$key/resources/svg"));
