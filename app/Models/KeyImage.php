@@ -35,12 +35,12 @@ class KeyImage extends Model implements HasMedia
     public function generate()
     {
         $filedata = Browsershot::url(route('preview', $this))
-        ->windowSize(288, 288)
-        ->base64Screenshot();
+            ->windowSize(288, 288)
+            ->base64Screenshot();
 
         return $this
             ->addMediaFromBase64($filedata)
-            ->usingFileName($this->filename . '.png')
+            ->usingFileName($this->filename.'.png')
             ->toMediaCollection('key-image');
     }
 }

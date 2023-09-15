@@ -109,15 +109,15 @@ class GenerateIconList extends Command
         $data = collect($this->libraries)->mapWithKeys(function ($lib, $key) {
             $files = app('files')->files(base_path("vendor/$key/resources/svg"));
 
-            if(!empty($files)) {
-                $icons = array_map(fn ($icon) => $lib['component'] . '-' . $icon->getBasename('.svg'), $files);
+            if (! empty($files)) {
+                $icons = array_map(fn ($icon) => $lib['component'].'-'.$icon->getBasename('.svg'), $files);
             } else {
                 $folders = app('files')->directories(base_path("vendor/$key/resources/svg"));
                 $icons = [];
-                foreach($folders as $folder) {
+                foreach ($folders as $folder) {
                     $files = app('files')->files($folder);
-                    if(isset($lib['types'])) {
-                        $i = array_map(fn ($icon) => $lib['component'] . $lib['types'][basename($folder)] . '-' . $icon->getBasename('.svg'), $files);
+                    if (isset($lib['types'])) {
+                        $i = array_map(fn ($icon) => $lib['component'].$lib['types'][basename($folder)].'-'.$icon->getBasename('.svg'), $files);
                     } else {
                         dd($folder);
                     }

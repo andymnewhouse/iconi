@@ -6,7 +6,6 @@ use Illuminate\Support\Str;
 
 trait WithIcons
 {
-
     public $iconSearch = '';
 
     public $libraries = [
@@ -26,7 +25,7 @@ trait WithIcons
                 })
                 ->map(fn ($icon) => [
                     'name' => $icon->getFilename(),
-                    'component' => $lib['component'] . '-' . $icon->getBasename('.svg'),
+                    'component' => $lib['component'].'-'.$icon->getBasename('.svg'),
                 ]);
 
             return [$lib['title'] => $icons];

@@ -24,8 +24,8 @@ class Dashboard extends Component
     {
         $keyImage = $this->keyImages->find($id);
 
-        if($image = $keyImage->getMedia('key-image')) {
-           return $image;
+        if ($image = $keyImage->getMedia('key-image')) {
+            return $image;
         } else {
             return $keyImage->generate();
         }
