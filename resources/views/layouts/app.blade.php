@@ -10,12 +10,12 @@
         @include('layouts.favicons')
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @vite('resources/css/app.css')
 
         @livewireStyles
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        @vite('resources/js/app.js')
     </head>
     <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900">
         <x-jet-banner />
