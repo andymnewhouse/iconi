@@ -11,7 +11,7 @@
             </x-slot>
 
             <x-slot name="body">
-                @forelse($keyImages as $keyImage)
+                @forelse ($keyImages as $keyImage)
                 <x-bit.table.row wire:key="row-{{ $keyImage->id }}">
                     <x-bit.table.cell>{{ $keyImage->filename }}</x-bit.table.cell>
                     <x-bit.table.cell>
@@ -21,7 +21,7 @@
                         <x-dynamic-component :component="$keyImage->config['icon']" class="h-4 w-h" />
                     </x-bit.table.cell>
                     <x-bit.table.cell class="flex items-center space-x-1">
-                        @if($image = $keyImage->getFirstMediaUrl('key-image'))
+                        @if ($image = $keyImage->getFirstMediaUrl('key-image'))
                             <img src="{{ $image }}" loading="lazy" alt="{{ $keyImage->filename }}" class="w-4 h-4 rounded">
                             <button type="button" class="hover:underline" wire:click="generate({{ $keyImage->id }})">Regenerate</button>
                         @else

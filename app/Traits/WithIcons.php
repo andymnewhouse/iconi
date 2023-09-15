@@ -19,13 +19,13 @@ trait WithIcons
     public function getIconsProperty()
     {
         return collect($this->libraries)->mapWithKeys(function ($lib, $key) {
-            $icons = collect(app('files')->files(base_path("/vendor/$key/resources/svg")))
+            $icons = collect(app('files')->files(base_path("/vendor/{$key}/resources/svg")))
                 ->when($this->iconSearch !== '', function ($collection) {
                     return $collection->filter(fn ($icon) => Str::contains($icon->getFilename(), $this->iconSearch));
                 })
                 ->map(fn ($icon) => [
                     'name' => $icon->getFilename(),
-                    'component' => $lib['component'].'-'.$icon->getBasename('.svg'),
+                    'component' => $lib['component'] . '-' . $icon->getBasename('.svg'),
                 ]);
 
             return [$lib['title'] => $icons];
