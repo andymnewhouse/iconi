@@ -93,7 +93,7 @@ class Builder extends Component
             ['link' => '#background', 'title' => 'Background', 'subtitle' => 'Choose a color, or image to be the icon background', 'complete' => $this->form['background']['color'] !== '', 'active' => false],
             ['link' => '#icon', 'title' => 'Icon', 'subtitle' => 'Choose an icon, or upload one', 'complete' => $this->form['icon'], 'active' => false],
             ['link' => '#styling', 'title' => 'Styling', 'subtitle' => 'Add shadows, or other affects to the icon', 'complete' => $this->form['styling']['color'], 'active' => false],
-            ['link' => '#download', 'title' => 'Download', 'subtitle' => 'Get your creation to use in stream deck', 'complete' => optional($this->keyImage)->getMedia('key-image'), 'active' => false],
+            ['link' => '#download', 'title' => 'Download', 'subtitle' => 'Get your creation to use in stream deck', 'complete' => $this->keyImage?->getMedia('key-image'), 'active' => false],
         ];
     }
 
