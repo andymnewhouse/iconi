@@ -10,14 +10,14 @@
                 <legend class="sr-only">Background Style</legend>
                 <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                     <div class="flex items-center">
-                        <input id="solid" wire:model="form.background.style" name="background-style" value="solid" type="radio" checked class="w-4 h-4 border-gray-300 focus:ring-cyan-500 text-cyan-600">
+                        <input id="solid" wire:model.live="form.background.style" name="background-style" value="solid" type="radio" checked class="w-4 h-4 border-gray-300 focus:ring-cyan-500 text-cyan-600">
                         <label for="solid" class="block ml-3 text-sm font-medium text-gray-700 dark:text-gray-400">
                             Solid
                         </label>
                     </div>
 
                     <div class="flex items-center">
-                        <input id="gradient" wire:model="form.background.style" name="background-style" value="gradient" type="radio" class="w-4 h-4 border-gray-300 focus:ring-cyan-500 text-cyan-600">
+                        <input id="gradient" wire:model.live="form.background.style" name="background-style" value="gradient" type="radio" class="w-4 h-4 border-gray-300 focus:ring-cyan-500 text-cyan-600">
                         <label for="gradient" class="block ml-3 text-sm font-medium text-gray-700 dark:text-gray-400">
                             Gradient
                         </label>

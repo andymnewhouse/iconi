@@ -6,7 +6,7 @@
     <div class="px-4 py-5 space-y-4 rounded-b-lg sm:px-6">
         <div>
             <label for="filename" class="text-gray-700 dark:text-gray-400">Filename</label>
-            <input type="text" id="filename" wire:model="filename" class="block w-full border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm dark:bg-gray-900 dark:text-gray-200 dark:focus:bg-gray-800 dark:border-gray-700">
+            <input type="text" id="filename" wire:model.live="filename" class="block w-full border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm dark:bg-gray-900 dark:text-gray-200 dark:focus:bg-gray-800 dark:border-gray-700">
         </div>
 
         <div>
