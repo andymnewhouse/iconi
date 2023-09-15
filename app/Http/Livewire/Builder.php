@@ -7,7 +7,6 @@ use App\Traits\WithColors;
 use App\Traits\WithIcons;
 use Illuminate\Support\Str;
 use Livewire\Component;
-use Spatie\Browsershot\Browsershot;
 
 class Builder extends Component
 {
@@ -16,20 +15,22 @@ class Builder extends Component
     public $keyImage;
 
     public $bgColorSearch;
+
     public $iconColorSearch;
 
     public $filename;
+
     public $form = [
         'background' => [
             'style' => 'solid',
-            'color' => ''
+            'color' => '',
         ],
         'icon' => null,
         'styling' => [
             'color' => '',
             'shadow' => '',
             'type' => 'builder',
-            'builder' => [ [] ]
+            'builder' => [[]],
         ],
     ];
 
@@ -43,7 +44,7 @@ class Builder extends Component
 
     public function mount($keyImage = null)
     {
-        if($keyImage) {
+        if ($keyImage) {
             $keyImage = KeyImage::find($keyImage);
 
             $this->keyImage = $keyImage;
@@ -67,22 +68,22 @@ class Builder extends Component
     public function getBackgroundColorsProperty()
     {
         return collect($this->colorData)
-            ->when($this->bgColorSearch && is_numeric($this->bgColorSearch), function($collection) {
-                return $collection->map(fn($colorGroup) => $colorGroup['500']);
+            ->when($this->bgColorSearch && is_numeric($this->bgColorSearch), function ($collection) {
+                return $collection->map(fn ($colorGroup) => $colorGroup['500']);
             })
-            ->when($this->bgColorSearch && !is_numeric($this->bgColorSearch), function($collection) {
-                return $collection->filter(fn($group, $key) => Str::contains(strtolower($key), strtolower($this->bgColorSearch)));
+            ->when($this->bgColorSearch && ! is_numeric($this->bgColorSearch), function ($collection) {
+                return $collection->filter(fn ($group, $key) => Str::contains(strtolower($key), strtolower($this->bgColorSearch)));
             });
     }
 
     public function getIconColorsProperty()
     {
         return collect($this->colorData)
-            ->when($this->iconColorSearch && is_numeric($this->iconColorSearch), function($collection) {
-                return $collection->map(fn($colorGroup) => $colorGroup['500']);
+            ->when($this->iconColorSearch && is_numeric($this->iconColorSearch), function ($collection) {
+                return $collection->map(fn ($colorGroup) => $colorGroup['500']);
             })
-            ->when($this->iconColorSearch && !is_numeric($this->iconColorSearch), function($collection) {
-                return $collection->filter(fn($group, $key) => Str::contains(strtolower($key), strtolower($this->iconColorSearch)));
+            ->when($this->iconColorSearch && ! is_numeric($this->iconColorSearch), function ($collection) {
+                return $collection->filter(fn ($group, $key) => Str::contains(strtolower($key), strtolower($this->iconColorSearch)));
             });
     }
 
@@ -105,7 +106,7 @@ class Builder extends Component
     {
         $this->validate();
 
-        if(!$this->keyImage) {
+        if (! $this->keyImage) {
             $this->keyImage = KeyImage::create([
                 'user_id' => auth()->check() ? auth()->id() : null,
                 'filename' => $this->filename,
@@ -119,7 +120,7 @@ class Builder extends Component
             $this->keyImage->save();
         }
 
-        if($configChanged) {
+        if ($configChanged) {
             $file = $this->keyImage->generate();
         } else {
             $file = $this->keyImage->getMedia('key-image');
@@ -132,7 +133,7 @@ class Builder extends Component
     {
         $this->validate();
 
-        if(!$this->keyImage) {
+        if (! $this->keyImage) {
             $this->keyImage = KeyImage::create([
                 'user_id' => auth()->check() ? auth()->id() : null,
                 'filename' => $this->filename,
@@ -147,5 +148,4 @@ class Builder extends Component
 
         return redirect()->route('dashboard');
     }
-
 }

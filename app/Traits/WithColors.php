@@ -4,7 +4,6 @@ namespace App\Traits;
 
 trait WithColors
 {
-
     public $colorData = [
         'blueGray' => [
             50 => '#F8FAFC',
@@ -274,6 +273,6 @@ trait WithColors
 
     public function getColorsProperty()
     {
-        return collect($this->colorData)->map(fn($colorGroup) => $colorGroup['500']);
+        return collect($this->colorData)->map(fn ($colorGroup) => $colorGroup['500']);
     }
 }
